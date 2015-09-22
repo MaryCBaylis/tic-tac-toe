@@ -34,11 +34,29 @@
   )
 )
 
+(defn legal-move? 
+  [board move]
+  (def row (get board (str (get (clojure.string/upper-case move) 0))))
+  (if-not (nil? row)
+    (do 
+      (def column (get row (clojure.string/join (rest move))))
+      (if-not (nil? column)
+        (= " " column)
+        false
+      )
+    )
+    false
+  )
+)
+
 (defn player-turn
   [board]
-  (println "Gimme your best shot!")
   (println "Enter the letter and number of the square you want to mark.  Eg: A1")
   (def player-move (str (read-line)))
+  (if (legal-move? board player-move)
+       (println "Update the board!")
+       (do (println "I'm afraid I can't let you do that, David.") (recur board))
+  )
 )
 
 (defn game-loop
@@ -46,6 +64,7 @@
   (display-board board)
 
   ;;Player takes turn first
+  (println "Gimme your best shot!")
   (player-turn board)
   ;;Perform checks
   ;;Comp takes turn
