@@ -34,16 +34,32 @@
   )
 )
 
+(defn player-turn
+  [board]
+)
+
 (defn game-loop
   [board]
   (display-board board)
+
+  ;;Player takes turn first
+  ;;Perform checks
+  ;;Comp takes turn
+  ;;Perform checks
+
+  ;;End of game, ask to play again
+
+  (println "Play again?")
+  (def input (str (read-line)))
+  (if (play-again? input)
+    (recur (create-board))
+  )
 )
 
 (defn start-game
   []
   (println "Let's play!")
-  (def board (create-board))
-  (game-loop board)
+  (game-loop (create-board))
 )
 
 (defn -main
