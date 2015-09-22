@@ -4,15 +4,24 @@
 (defn create-board
   []
   {
-    "a" {"1" nil "2" nil "3" nil}
-    "b" {"1" nil "2" nil "3" nil}
-    "c" {"1" nil "2" nil "3" nil}
+    "a" {"1" " " "2" " " "3" " "}
+    "b" {"1" " " "2" " " "3" " "}
+    "c" {"1" " " "2" " " "3" " "}
   }
+)
+
+(defn display-board
+  [board]
+  (println board)
+  (doseq [row board] (doseq [tile (val row)] (print (val tile) " ")) (println))
+  (println (seq board))
 )
 
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
   (println "Welcome to Tic-Tac-Toe!")
-  (def board (create-board)))
+  (def board (create-board))
+  (display-board board)
+)
 
