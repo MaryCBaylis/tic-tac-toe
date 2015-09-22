@@ -34,6 +34,18 @@
   )
 )
 
+(defn game-loop
+  [board]
+  (display-board board)
+)
+
+(defn start-game
+  []
+  (println "Let's play!")
+  (def board (create-board))
+  (game-loop board)
+)
+
 (defn -main
   "I play tic-tac-toe!"
   [& args]
@@ -42,11 +54,9 @@
 
   (def input (str (read-line)))
   (if (play-again? input)
-    ;;start the game loop!
-    (println "I've started a game")
+    (start-game)
+    (println "Why'd you even?.....")
   )
   (println "See you next time!")
-  (def board (create-board))
-  (display-board board)
 )
 
