@@ -12,13 +12,12 @@
 
 (defn display-board
   [board]
-  (println board)
-  (doseq [row board] (doseq [tile (val row)] (print (val tile) " ")) (println))
-  (println (seq board))
+  (println "   1  2  3")
+  (doseq [row board] (print (key row) " ") (doseq [tile (val row)] (print (val tile) " ")) (println))
 )
 
 (defn -main
-  "I don't do a whole lot ... yet."
+  "I play tic-tac-toe!"
   [& args]
   (println "Welcome to Tic-Tac-Toe!")
   (def board (create-board))
