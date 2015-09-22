@@ -4,9 +4,9 @@
 (defn create-board
   []
   {
-    "a" {"1" " " "2" " " "3" " "}
-    "b" {"1" " " "2" " " "3" " "}
-    "c" {"1" " " "2" " " "3" " "}
+    "A" {"1" " " "2" " " "3" " "}
+    "B" {"1" " " "2" " " "3" " "}
+    "C" {"1" " " "2" " " "3" " "}
   }
 )
 
@@ -36,6 +36,9 @@
 
 (defn player-turn
   [board]
+  (println "Gimme your best shot!")
+  (println "Enter the letter and number of the square you want to mark.  Eg: A1")
+  (def player-move (str (read-line)))
 )
 
 (defn game-loop
@@ -43,6 +46,7 @@
   (display-board board)
 
   ;;Player takes turn first
+  (player-turn board)
   ;;Perform checks
   ;;Comp takes turn
   ;;Perform checks
@@ -50,8 +54,7 @@
   ;;End of game, ask to play again
 
   (println "Play again?")
-  (def input (str (read-line)))
-  (if (play-again? input)
+  (if (play-again? (str (read-line)))
     (recur (create-board))
   )
 )
@@ -68,9 +71,8 @@
   (println "Welcome to Tic-Tac-Toe!")
   (println "Shall we play a game?  (Y)es/(N)o?")
 
-  (def input (str (read-line)))
-  (if (play-again? input)
-    (start-game)
+  (if (play-again? (str (read-line)))
+    (game-loop (create-board))
     (println "Why'd you even?.....")
   )
   (println "See you next time!")
