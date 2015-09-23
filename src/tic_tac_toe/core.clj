@@ -54,20 +54,19 @@
   (println "Enter the letter and number of the square you want to mark.  Eg: A1")
   (def player-move (str (read-line)))
   (if (legal-move? board player-move)
+    ;;create and return updated board here
        (println "Update the board!")
-       (do (println "I'm afraid I can't let you do that, David.") (recur board))
+       (do (println "I'm sorry, Dave. I'm afraid I can't do that.") (recur board))
   )
 )
 
 (defn game-loop
-  [board]
+  [board :player]
   (display-board board)
 
-  ;;Player takes turn first
+  ;;if player exists, player turn, else cpu turn
   (println "Gimme your best shot!")
-  (player-turn board)
-  ;;Perform checks
-  ;;Comp takes turn
+  (def new-board (player-turn board))
   ;;Perform checks
 
   ;;End of game, ask to play again
@@ -91,7 +90,7 @@
   (println "Shall we play a game?  (Y)es/(N)o?")
 
   (if (play-again? (str (read-line)))
-    (game-loop (create-board))
+    (game-loop (create-board) "player")
     (println "Why'd you even?.....")
   )
   (println "See you next time!")
